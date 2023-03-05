@@ -32,19 +32,19 @@ class Sort {
 				fout<<g[i]<<" ";
 			fout.close();
 		}
-        void countingSort(int n, int k) {
-            int c[k+1];
-            for (int i=0;i<=k;i++) c[i]=0;
-            for (int j=0;j<=n-1;j++)
-                c[a[j]]++;
-            for (int i=1;i<=k;i++)
-                c[i] = c[i]+c[i-1];
-            for (int j=n-1;j>=0;j--) {
-                b[c[a[j]]-1] = a[j];
-                c[a[j]]--;
-            }
+		void countingSort(int n, int k) {
+			int c[k+1];
+			for (int i=0;i<=k;i++) c[i]=0;
+			for (int j=0;j<=n-1;j++)
+				c[a[j]]++;
+			for (int i=1;i<=k;i++)
+				c[i] = c[i]+c[i-1];
+			for (int j=n-1;j>=0;j--) {
+				b[c[a[j]]-1] = a[j];
+				c[a[j]]--;
+			}
 			for (int j=0;j<n;j++) a[j] = b[j];
-        }
+		}
 		void radixSort(int n, int d) {
 			int c[10];
 			for (int i=1;i<=d;i++) {
