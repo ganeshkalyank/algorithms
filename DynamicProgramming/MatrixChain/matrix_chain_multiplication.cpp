@@ -51,8 +51,8 @@ class MatrixChainMultiplication {
                 cout << ")";
             }
         }
-        // brute force approach
-        int Brute_Force_MCM(int i, int j, int &opCount) {
+        // divide and conquer approach
+        int Divide_Conquer_MCM(int i, int j, int &opCount) {
             if (i == j) {
                 return 0;
             }
@@ -60,7 +60,7 @@ class MatrixChainMultiplication {
             int count;
             for (int k = i; k < j; k++) {
                 opCount++;
-                count = Brute_Force_MCM(i, k, opCount) + Brute_Force_MCM(k + 1, j, opCount) + p[i - 1] * p[k] * p[j];
+                count = Divide_Conquer_MCM(i, k, opCount) + Divide_Conquer_MCM(k + 1, j, opCount) + p[i - 1] * p[k] * p[j];
                 if (count < min) {
                     min = count;
                 }
@@ -94,7 +94,7 @@ int main() {
         case '2':
             for (int i = 0; i < 5; i++) {
                 int count = 0;
-                cout << "Input Size: " << lens[i] << " Minimum number of multiplications is " << mcm.Brute_Force_MCM(1, lens[i],count) << endl;
+                cout << "Input Size: " << lens[i] << " Minimum number of multiplications is " << mcm.Divide_Conquer_MCM(1, lens[i],count) << endl;
                 cout << "Operation Count: " << count << endl;
             }
             break;
