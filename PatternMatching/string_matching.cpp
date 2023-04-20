@@ -43,12 +43,41 @@ class StringMatching {
                 }
             }
         }
+        void KnuthMorrisPratt(string T, string P) {
+            int n = T.length();
+            int m = P.length();
+            int pi[m];
+            pi[0] = 0;
+            int k = 0;
+            for (int q=1; q<m; q++) {
+                while (k>0 && P[k]!=P[q]) {
+                    k = pi[k-1];
+                }
+                if (P[k]==P[q]) {
+                    k++;
+                }
+                pi[q] = k;
+            }
+            int q = 0;
+            for (int i=0; i<n; i++) {
+                while (q>0 && P[q]!=T[i]) {
+                    q = pi[q-1];
+                }
+                if (P[q]==T[i]) {
+                    q++;
+                }
+                if (q==m) {
+                    cout<<"String found after "<< i-m+1 <<" shifts"<<endl;
+                    q = pi[q-1];
+                }
+            }
+        }
 };
 
 int main() {
     string txt = "kalyan hey! i am kalyan and kalyan here kalyan";
     string ptr = "kalyan";
     StringMatching sm;
-    sm.RobinKarpMatcher(txt,ptr);
+    sm.KnuthMorrisPratt(txt,ptr);
     return 0;
 }
