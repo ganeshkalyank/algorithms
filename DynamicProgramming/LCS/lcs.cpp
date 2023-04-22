@@ -51,8 +51,16 @@ class LCS {
                 print_lcs(i, j - 1);
             }
         }
+        int lcs_length_td_init(int i, int j, int &count) {
+            for (int k = 0; k <= i; k++) {
+                for (int l = 0; l <= j; l++) {
+                    c[k][l] = INT_MIN;
+                }
+            }
+            return lcs_length_td(i, j, count);
+        }
         int lcs_length_td(int i, int j, int &count) {
-            if (c[i][j] > 0) {
+            if (c[i][j] >= 0) {
                 return c[i][j];
             }
             count++;
@@ -99,7 +107,7 @@ int main() {
         lcs.lcs_length_dc(input_sizes[i], input_sizes[i], count);
         cout << setw(20) << count;
         count = 0;
-        lcs.lcs_length_td(input_sizes[i], input_sizes[i], count);
+        lcs.lcs_length_td_init(input_sizes[i], input_sizes[i], count);
         cout << setw(20) << count;
         lcs.lcs_length_bu(input_sizes[i], input_sizes[i], count);
         cout << setw(20) << count;
