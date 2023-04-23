@@ -90,9 +90,8 @@ class LCS {
                 return 0;
             if (x[i] == y[j])
                 return lcs_length_dc(i-1,j-1, count) + 1;
-            else {
+            else
                 return max(lcs_length_dc(i-1, j, count), lcs_length_dc(i, j-1, count));
-            }
         }
 };
 
@@ -109,6 +108,7 @@ int main() {
         count = 0;
         lcs.lcs_length_td_init(input_sizes[i], input_sizes[i], count);
         cout << setw(20) << count;
+        count = 0;
         lcs.lcs_length_bu(input_sizes[i], input_sizes[i], count);
         cout << setw(20) << count;
         cout << endl;

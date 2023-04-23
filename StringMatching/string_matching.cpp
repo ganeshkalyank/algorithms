@@ -7,11 +7,9 @@ class StringMatching {
         void NaiveStringMatching(string T, string P) {
             int n = T.length();
             int m = P.length();
-            for (int i=0; i<=n-m; i++) {
-                if (P == T.substr(i,m)) {
+            for (int i=0; i<=n-m; i++)
+                if (P == T.substr(i,m))
                     cout<<"String found after "<< i <<" shifts"<<endl;
-                }
-            }
         }
         void RobinKarpMatcher(string T, string P, int d=256, int q=97) {
             int n = T.length(),
@@ -26,20 +24,17 @@ class StringMatching {
             }
             for (int s=0; s<=n-m; s++) {
                 // cout<<P<<" - "<<T.substr(s,m)<<" p="<<p<<" t="<<t[s]<<endl;
-                if (p==t[s]) {
-                    if (P==T.substr(s,m)) {
+                if (p==t[s])
+                    if (P==T.substr(s,m))
                         cout<<"String found after "<< s <<" shifts"<<endl;
-                    }
-                }
                 if (s<n-m) {
                     int temp = (d*(t[s]-((int)T[s])*h) + (int)T[s+m]);
                     if (temp<0) {
                         temp *= -1;
                         t[s+1] = temp%q;
                         t[s+1] = q-t[s+1];
-                    } else {
+                    } else
                         t[s+1] = temp%q;
-                    }
                 }
             }
         }
@@ -50,22 +45,16 @@ class StringMatching {
             pi[0] = 0;
             int k = 0;
             for (int q=1; q<m; q++) {
-                while (k>0 && P[k]!=P[q]) {
+                while (k>0 && P[k]!=P[q])
                     k = pi[k-1];
-                }
-                if (P[k]==P[q]) {
-                    k++;
-                }
+                if (P[k]==P[q]) k++;
                 pi[q] = k;
             }
             int q = 0;
             for (int i=0; i<n; i++) {
-                while (q>0 && P[q]!=T[i]) {
+                while (q>0 && P[q]!=T[i])
                     q = pi[q-1];
-                }
-                if (P[q]==T[i]) {
-                    q++;
-                }
+                if (P[q]==T[i]) q++;
                 if (q==m) {
                     cout<<"String found after "<< i-m+1 <<" shifts"<<endl;
                     q = pi[q-1];
