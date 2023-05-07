@@ -8,10 +8,8 @@ class StringMatching {
             int n = T.length();
             int m = P.length();
             for (int i=0; i<=n-m; i++)
-            if (P == T.substr(i,m))
-                cout<<"String found after "<< i <<" shifts"<<endl;
-            if (P != T.substr(n-m+1,m))
-                cout << "Pattern not found" << endl;
+                if (P == T.substr(i,m))
+                    cout<<"String found after "<< i <<" shifts"<<endl;
         }
         void RobinKarpMatcher(string T, string P, int d=256, int q=97) {
             int n = T.length(),
@@ -19,12 +17,13 @@ class StringMatching {
                 h = ((long int) pow(d,m-1)) % q,
                 p = 0,
                 t[n-m+2];
-            t[0]=0;
+                t[0]=0;
             for (int i=0; i<m; i++) {
-                p = (dp + (int)P[i]) % q;
-                t[0] = (dt[0] + (int)T[i]) % q;
+                p = (d*p + (int)P[i]) % q;
+                t[0] = (d*t[0] + (int)T[i]) % q;
             }
             for (int s=0; s<=n-m; s++) {
+                // cout<<P<<" - "<<T.substr(s,m)<<" p="<<p<<" t="<<t[s]<<endl;
                 if (p==t[s])
                     if (P==T.substr(s,m))
                         cout<<"String found after "<< s <<" shifts"<<endl;
@@ -38,8 +37,6 @@ class StringMatching {
                         t[s+1] = temp%q;
                 }
             }
-            if (P != T.substr(n-m+1,m))
-                cout << "Pattern not found" << endl;
         }
         void KnuthMorrisPratt(string T, string P) {
             int n = T.length();
@@ -51,7 +48,7 @@ class StringMatching {
                 while (k>0 && P[k]!=P[q])
                     k = pi[k-1];
                 if (P[k]==P[q]) k++;
-                    pi[q] = k;
+                pi[q] = k;
             }
             int q = 0;
             for (int i=0; i<n; i++) {
@@ -63,8 +60,6 @@ class StringMatching {
                     q = pi[q-1];
                 }
             }
-            if (P != T.substr(n-m+1,m))
-                cout << "Pattern not found" << endl;
         }
 };
 
