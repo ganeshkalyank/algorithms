@@ -5,6 +5,8 @@ using namespace std;
 class StringMatching {
     public:
         void NaiveStringMatching(string T, string P) {
+            if (T.find(P) == string::npos)
+                cout<<"String not found!"<<endl;
             int n = T.length();
             int m = P.length();
             for (int i=0; i<=n-m; i++)
@@ -12,6 +14,8 @@ class StringMatching {
                     cout<<"String found after "<< i <<" shifts"<<endl;
         }
         void RobinKarpMatcher(string T, string P, int d=256, int q=97) {
+            if (T.find(P) == string::npos)
+                cout<<"String not found!"<<endl;
             int n = T.length(),
                 m = P.length(),
                 h = ((long int) pow(d,m-1)) % q,
@@ -39,6 +43,8 @@ class StringMatching {
             }
         }
         void KnuthMorrisPratt(string T, string P) {
+            if (T.find(P) == string::npos)
+                cout<<"String not found!"<<endl;
             int n = T.length();
             int m = P.length();
             int pi[m];
