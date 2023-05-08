@@ -72,15 +72,21 @@ int main() {
     cout << setw(20) << "Input size" << setw(20) << "D & C" << setw(20) << "Topdown" << setw(20) << "Bottom up" << endl;
     for (int i=0;i<5;i++) {
         cout << setw(20) << inputs[i];
+
         memset(mcm.dp, -1, sizeof(mcm.dp));
         count = 0;
-        cout << setw(20) << mcm.mcm_dc(arr,1,inputs[i]-1,count);
+        mcm.mcm_dc(arr,1,inputs[i]-1,count);
+        cout << setw(20) << count;
+
         memset(mcm.dp, -1, sizeof(mcm.dp));
         count = 0;
-        cout << setw(20) << mcm.mcm_dp(arr,1,inputs[i]-1,count);
+        mcm.mcm_dp(arr,1,inputs[i]-1,count);
+        cout << setw(20) << count;
+
         memset(mcm.dp, -1, sizeof(mcm.dp));
         count = 0;
-        cout << setw(20) << mcm.mcm_bu(arr,inputs[i],count);
+        mcm.mcm_bu(arr,inputs[i],count);
+        cout << setw(20) << count;
         cout << endl;
     }
     return 0;
